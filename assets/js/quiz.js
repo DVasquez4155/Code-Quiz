@@ -40,7 +40,6 @@ function displayQuiz() {
     clear()
     currentQuestionNumber = -1;
     timeleft = questions.length * 15;
-    startTimer();
     var title = document.createElement('h1');
     title.setAttribute("id", "title")
     $("#main").append(title);
@@ -66,6 +65,7 @@ function nextQuestion() {
     currentQuestion = questions[currentQuestionNumber];
     $('#title').html(currentQuestion.title);
     var choices = currentQuestion.choices;
+    startTimer();
     choices.forEach(function(choice) {
         $("#questions").append(document.createElement('br'));
         
@@ -78,12 +78,15 @@ function nextQuestion() {
 
 function reset() {
     questionDone = false;
+    timer = 0;
+    displayTime();
     $("#questions").html('');
     $('#continue').toggleClass('d-none')
     $('#message').html('')
 }
 var answerButton;
 function answer(e) {
+    clearInterval(timer)
     answerButton = e;
     if (questionDone) {
         return;
@@ -91,12 +94,19 @@ function answer(e) {
     questionDone = true;
     answerButton.classList.add('btn-primary');
     $('#continue').toggleClass('d-none')
+    currentQuestion.choices.forEach(function(currentAnswer) {
+        if(currentAnswer == currentQuestion.answer) {
+            $("#" + currentQuestion.choices.indexOf(currentAnswer)).addClass('btn-success');
+        }
+        else {
+            
+            $("#" + currentQuestion.choices.indexOf(currentAnswer)).addClass('btn-danger');
+        }
+    })
     if (answerButton.innerHTML == currentQuestion.answer) {
-        answerButton.classList.add('btn-success');
         $('#message').html('Correct!')
     }
     else {
-        answerButton.classList.add('btn-danger');
         $('#message').html('Wrong!')
         timeleft -= 15;
         displayTime()
