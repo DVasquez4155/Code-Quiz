@@ -9,7 +9,9 @@ var scores = getScores();
 // Retrieves the score
 function getScores() {
     var retrievedObject = localStorage.getItem('scores');
-    
+    if (retrievedObject == null) {
+        return [];
+    }
     return JSON.parse(retrievedObject);
 }
 
