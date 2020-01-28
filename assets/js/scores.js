@@ -47,6 +47,9 @@ function displayScores() {
         
         $("#" + user).append("<td>" +  (parseInt(user) + 1) + "</td>");
         scores[user].forEach(function(text){
+            
+        console.log(user + " " +
+        text)
             $("#" + user).append("<td>" +  text + "</td>");
         })
     });
