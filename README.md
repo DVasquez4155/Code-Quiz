@@ -6,9 +6,6 @@
 This is a javascript quiz I made.
 You are able to save scores and compare with others.
 
-* [Credits](#Credits)
-* [Contributing](#Contributing)
-* [License](#License)
 ## Credits
 [<img src="https://avatars0.githubusercontent.com/u/22107830?v=4" width="50"/> Daniel Vasquez Talavera](https://github.com/DVasquez4155)
 ## Contributing
